@@ -10,20 +10,24 @@ defmodule Sippet.Transactions.Client.NonInvite do
 
   @t2 4000
   @timer_e 500
-  @timer_f 64 * @timer_e
+  @timer_f 500
   @timer_k 5000  # timer K is 5s
 
   defp start_timers(%State{request: request, extras: extras} = data) do
-    deadline_timer = self() |> Process.send_after(:deadline, @timer_f)
+    timer_f =
+      :sippet
+      |> Application.get_env(__MODULE__)
+      |> Keyword.fetch!(:request_timeout)
+    deadline_timer = self() |> Process.send_after(:deadline, timer_f)
     extras = extras |> Map.put(:deadline_timer, deadline_timer)
 
-    extras =
-      if reliable?(request) do
-        extras
-      else
-        retry_timer = self() |> Process.send_after(@timer_e, @timer_e)
-        extras |> Map.put(:retry_timer, retry_timer)
-      end
+    # extras =
+    #   if reliable?(request) do
+    #     extras
+    #   else
+    #     retry_timer = self() |> Process.send_after(@timer_e, @timer_e)
+    #     extras |> Map.put(:retry_timer, retry_timer)
+    #   end
 
     %{data | extras: extras}
   end

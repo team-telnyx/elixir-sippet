@@ -26,3 +26,6 @@ config :sippet, Sippet.Transports.Pool,
 # Sets the transport plugs, or the supported SIP transport protocols.
 config :sippet, Sippet.Transports,
   udp: Sippet.Transports.UDP.Plug
+
+config :sippet, Sippet.Transactions.Client.NonInvite,
+  request_timeout: 500
