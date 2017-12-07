@@ -13,7 +13,7 @@ defmodule Sippet.Config do
   #   end
   # end
 
-  def get_env_port(key) do
+  def get_env_int(key) do
 
     :sippet
     |> Application.get_env(key, [])

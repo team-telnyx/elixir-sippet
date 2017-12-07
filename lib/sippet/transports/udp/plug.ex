@@ -30,14 +30,11 @@ defmodule Sippet.Transports.UDP.Plug do
 
   require Logger
 
-  @port Config.get_env(:port)
-  @address Config.get_env(:address)
-
   @doc """
   Starts the UDP plug.
   """
   def start_link() do
-    port = Config.get_env(:port)
+    port = Config.get_env_int(:port)
     if port <= 0 do
       raise ArgumentError, "invalid port #{inspect port}"
     end

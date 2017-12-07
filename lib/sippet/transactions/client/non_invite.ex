@@ -14,10 +14,7 @@ defmodule Sippet.Transactions.Client.NonInvite do
   @timer_k 5000  # timer K is 5s
 
   defp start_timers(%State{request: request, extras: extras} = data) do
-    timer_f =
-      :sippet
-      |> Application.get_env(__MODULE__)
-      |> Keyword.fetch!(:request_timeout)
+    timer_f = Config.get_env_int(:request_timeout)
     deadline_timer = self() |> Process.send_after(:deadline, timer_f)
     extras = extras |> Map.put(:deadline_timer, deadline_timer)
 
