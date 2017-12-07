@@ -27,5 +27,5 @@ config :sippet, Sippet.Transports.Pool,
 config :sippet, Sippet.Transports,
   udp: Sippet.Transports.UDP.Plug
 
-config :sippet, Sippet.Transactions.Client.NonInvite,
-  request_timeout: 500
+# config :sippet, Sippet.Transactions.Client.NonInvite,
+#   request_timeout: 500
