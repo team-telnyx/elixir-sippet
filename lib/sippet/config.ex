@@ -1,4 +1,4 @@
-defmodule Watchdog.Config do
+defmodule Sippet.Config do
   @moduledoc """
   This module is used for configuration, to retrieve environment variable
   """
@@ -13,7 +13,8 @@ defmodule Watchdog.Config do
   #   end
   # end
 
-  def get_env_delay(key) do
+  def get_env_port(key) do
+
     :sippet
     |> Application.get_env(key, [])
     |> Configurative.fetch_value!
@@ -21,7 +22,7 @@ defmodule Watchdog.Config do
   end
 
   def get_env(key) do
-    :sippet
+    value = :sippet
     |> Application.get_env(key, [])
     |> Configurative.fetch_value!
   end

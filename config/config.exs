@@ -9,10 +9,9 @@ use Mix.Config
 #
 # * `:port` is the UDP port to listen (required).
 # * `:address` is the local address to bind (optional, defaults to "0.0.0.0")
-config :sippet, Sippet.Transports.UDP.Plug,
-  port: 5060,
-  address: "127.0.0.1"
-
+config :sippet,
+  port: {:system, "ELIXIR_SIPPET_PORT", 5050},
+  address: {:system, "ELIXIR_SIPPET_IP", "127.0.0.1"}
 # Sets the message processing pool settings:
 #
 # * `:size` is the pool size (optional, defaults to

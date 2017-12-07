@@ -24,25 +24,25 @@ defmodule Sippet.Transports.UDP.Plug do
 
   alias Sippet.Transports.UDP.Pool, as: Pool
   alias Sippet.Transports.Queue, as: Queue
+  alias Sippet.Config, as: Config
 
   import Supervisor.Spec
 
   require Logger
 
+  @port Config.get_env(:port)
+  @address Config.get_env(:address)
+
   @doc """
   Starts the UDP plug.
   """
   def start_link() do
-    port = get_env_delay(:port)
+    port = Config.get_env(:port)
     if port <= 0 do
       raise ArgumentError, "invalid port #{inspect port}"
     end
 
-    address = get_env(:address)
-      :sippet
-      |> Application.get_env(__MODULE__)
-      |> Keyword.get(:address)
-
+    address = Config.get_env(:address)
     opts =
       case address do
         nil -> []
