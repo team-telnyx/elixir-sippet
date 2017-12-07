@@ -43,6 +43,7 @@ defmodule Sippet.Mixfile do
     [{:gen_state_machine, "~> 2.0"},
      {:socket, "~> 0.3.5"},
      {:poolboy, "~> 1.5.1"},
+     {:configurative, git: "https://github.com/team-telnyx/configurative.git"},
 
      # Docs dependencies
      {:ex_doc, "~> 0.14", only: :dev, runtime: false},

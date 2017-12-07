@@ -33,16 +33,12 @@ defmodule Sippet.Transports.UDP.Plug do
   Starts the UDP plug.
   """
   def start_link() do
-    port =
-      :sippet
-      |> Application.get_env(__MODULE__)
-      |> Keyword.fetch!(:port)
-
+    port = get_env_delay(:port)
     if port <= 0 do
       raise ArgumentError, "invalid port #{inspect port}"
     end
 
-    address =
+    address = get_env(:address)
       :sippet
       |> Application.get_env(__MODULE__)
       |> Keyword.get(:address)
