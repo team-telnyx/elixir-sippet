@@ -5,6 +5,7 @@ defmodule Sippet.Transactions.Client.NonInvite do
 
   alias Sippet.Message.StatusLine, as: StatusLine
   alias Sippet.Transactions.Client.State, as: State
+  alias Sippet.Config, as: Config
 
   require Logger
 
