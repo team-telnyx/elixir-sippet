@@ -19,13 +19,13 @@ defmodule Sippet.Transactions.Client.NonInvite do
     deadline_timer = self() |> Process.send_after(:deadline, timer_f)
     extras = extras |> Map.put(:deadline_timer, deadline_timer)
 
-    extras =
-      if reliable?(request) do
-        extras
-      else
-        retry_timer = self() |> Process.send_after(@timer_e, @timer_e)
-        extras |> Map.put(:retry_timer, retry_timer)
-      end
+    # extras =
+    #   if reliable?(request) do
+    #     extras
+    #   else
+    #     retry_timer = self() |> Process.send_after(@timer_e, @timer_e)
+    #     extras |> Map.put(:retry_timer, retry_timer)
+    #   end
 
     %{data | extras: extras}
   end

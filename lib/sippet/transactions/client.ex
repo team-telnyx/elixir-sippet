@@ -23,9 +23,9 @@ defmodule Sippet.Transactions.Client do
       require Logger
 
       def init(%State{key: key} = data) do
-        Logger.info fn ->
-          "client transaction #{inspect key} started"
-        end
+        # Logger.info fn ->
+        #   "client transaction #{inspect key} started"
+        # end
 
         initial_state = unquote(opts)[:initial_state]
         {:ok, initial_state, data}
@@ -52,9 +52,9 @@ defmodule Sippet.Transactions.Client do
       defdelegate reliable?(request), to: Sippet.Transports
 
       def unhandled_event(:cast, :terminate, %State{key: key} = data) do
-        Logger.info fn ->
-          "client transaction #{inspect key} terminated"
-        end
+        # Logger.info fn ->
+        #   "client transaction #{inspect key} terminated"
+        # end
 
         {:stop, :normal, data}
       end
