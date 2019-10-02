@@ -3,7 +3,7 @@
 use Mix.Config
 
 # Configures the sippet core
-#config :sippet, core_module: Sippet.Proxy
+# config :sippet, core_module: Sippet.Proxy
 
 # Sets the UDP plug settings:
 #
@@ -24,5 +24,8 @@ config :sippet, Sippet.Transports.Pool,
   max_overflow: 0
 
 # Sets the transport plugs, or the supported SIP transport protocols.
-config :sippet, Sippet.Transports,
-  udp: Sippet.Transports.UDP.Plug
+config :sippet, Sippet.Transports, udp: Sippet.Transports.UDP.Plug
+
+config :sippet, Sippet.Transactions.Client.NonInvite,
+  no_retry_mode?: false,
+  no_retry_mode_timeout: 1000
